@@ -5,9 +5,9 @@
         <li class="item  item--post">
           <article class="article  article--post">
 
-            <h2><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></h2>
+            <h3><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></h3>
             {% include post-meta.html %}
-            {{ page.excerpt | markdownify | truncatewords: 60 }}
+            {{ page.excerpt | strip_html | truncatewords: 20 }}
 
           </article>
         </li>
@@ -24,7 +24,7 @@
 
             <h2><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></h2>
             {% include post-meta.html %}
-            {{ page.excerpt | markdownify | truncatewords: 60 }}
+            {{ page.excerpt | markdownify | truncatewords: 30 }}
 
           </article>
         </li>
