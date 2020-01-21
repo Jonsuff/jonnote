@@ -27,7 +27,7 @@ categories: Machine_Learning
 
 비용함수 : 
 $$
-J(w)_{Ridge} = \sum_{i=1}^n \left(y^{(i)} - \hat{y}^{(i)}\right)^2 + \lambda \lVert w \rVert_{2}^{2}
+J(w)_{Ridge} = \sum_{i=1}^n \left(y^{(i)} - \hat{y}^{(i)}\right)^2 + \lambda \lVert w \rVert_{2}^{2}\\
 $$
 
 
@@ -35,7 +35,7 @@ $$
 
 L2 규제 :
 $$
-\lambda \lVert w \rVert_{2}^{2} = \lambda \sum_{j=1}^m {w_j}^2
+\lambda \lVert w \rVert_{2}^{2} = \lambda \sum_{j=1}^m {w_j}^2\\
 $$
 
 
@@ -51,7 +51,7 @@ $$
 
 비용함수 :
 $$
-J(w)_{LASSO} = \sum_{i=1}^n \left(y^{(i)} - \hat{y}^{(i)}\right)^2 + \lambda \lVert w \rVert_1
+J(w)_{LASSO} = \sum_{i=1}^n \left(y^{(i)} - \hat{y}^{(i)}\right)^2 + \lambda \lVert w \rVert_1\\
 $$
 
 
@@ -59,7 +59,7 @@ $$
 
 L1 규제 :
 $$
-\lambda \lVert w \rVert_1 = \lambda \sum_{j=1}^m \left\vert w_j \right\vert
+\lambda \lVert w \rVert_1 = \lambda \sum_{j=1}^m \left\vert w_j \right\vert\\
 $$
 
 
@@ -72,7 +72,7 @@ $$
 
 
 $$
-J(w)_{ElasticNet} = \sum_{i=1}^n \left(y^{(i)} - \hat{y}^{(i)}\right)^2 + \lambda_1 \sum_{j=1}^m {w_j}^2 + \lambda_2 \sum_{j=1}^m \left\vert w_j \right\vert
+J(w)_{ElasticNet} = \sum_{i=1}^n \left(y^{(i)} - \hat{y}^{(i)}\right)^2 + \lambda_1 \sum_{j=1}^m {w_j}^2 + \lambda_2 \sum_{j=1}^m \left\vert w_j \right\vert\\
 $$
 
 

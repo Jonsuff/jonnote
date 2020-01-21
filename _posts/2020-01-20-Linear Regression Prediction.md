@@ -29,17 +29,17 @@ categories: Machine_Learning
 
 선형 회귀에서의 예측선은 1차함수의 선이여야 한다.
 $$
-y = ax+b
+y = ax+b\\
 $$
  따라서 하나의 직선으로 저 데이터를 표현해야 하지만 정확한 정답은 존재하지 않는다. 그렇다면 최대한 근사한 직선을 그어야 하는데 이 때 최소 제곱법을사용한다.
 
 우선 최소 제곱법의 공식은 직선의 기울기 a와 y절편 b에 대하여 다음과 같다.
 $$
-a = {\sum_{i=1}^n (x-mean(x))(y-mean(y)) \over \sum_{i=1}^n (x-mean(x))^2}
+a = {\sum_{i=1}^n (x-mean(x))(y-mean(y)) \over \sum_{i=1}^n (x-mean(x))^2}\\
 $$
 
 $$
-b = mean(y)-(mean(x)*a)
+b = mean(y)-(mean(x)*a)\\
 $$
 
 
@@ -54,7 +54,7 @@ $$
 
 OLS에서 사용할 비용함수는 아달린의 비용함수와 같다. 이는 제곱 오차합(SSE)로 공식은 다음과 같다.
 $$
-J(w) = {1 \over 2} \sum_{i=1}^n \left(y^{(i)}- \hat{y}^{(i)}\right)^2
+J(w) = {1 \over 2} \sum_{i=1}^n \left(y^{(i)}- \hat{y}^{(i)}\right)^2\\
 $$
 
 

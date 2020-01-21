@@ -24,46 +24,54 @@ categories: Deep_Learning
   (ex)
   $$
   Input(A):\begin{bmatrix}2&4&6&1&7 \\ 2&6&0&7&0 \\ 5&0&0&8&9\\7&0&1&1&4\\6&7&2&0&1\end{bmatrix}\\
+  \\
   $$
 
   - 입력된 데이터 A가 위와 같은 5x5 행렬이고,
 
   $$
   Filter(b):\begin{bmatrix}1&0&1\\0&1&0\\1&1&0\end{bmatrix}
+  \\
   $$
 
   - 합성곱 필터 B가 위와 같은 3x3 행렬이면 A의 좌측 상단 행렬인 sub(A)와 B를 원소끼리 곱한다.
 
   $$
   Sub(A):\begin{bmatrix}2&4&6\\2&6&0\\5&0&0\end{bmatrix}
+  \\
   $$
 
   $$
   Sub(A) \times Filter(B) = \begin{bmatrix}2&4&6\\2&6&0\\5&0&0\end{bmatrix} * \begin{bmatrix}1&0&1\\0&1&0\\1&1&0\end{bmatrix} = \begin{bmatrix}2&0&6\\0&6&0\\5&0&0 \end{bmatrix}
+  \\
   $$
 
   - 곱하진 수를 모두 더한다.
 
   $$
   2+6+0+6+0+5+0+0 = 19
+  \\
   $$
 
   - 입력 데이터에서 한칸 우측으로 이동하여 다른 부분행렬을 추출한다.
 
   $$
   Sub(A_2) =\begin{bmatrix}4&6&4\\6&0&7\\0&0&8\end{bmatrix}
+  \\
   $$
 
   - 위의 연산을 반복한다.
     $$
     \begin{bmatrix}4&6&4\\6&0&7\\0&0&8\end{bmatrix}*\begin{bmatrix}1&0&1\\0&1&0\\1&1&0\end{bmatrix} =\begin{bmatrix}4&0&4\\0&0&0\\0&0&0\end{bmatrix} \Rightarrow 4+4 = 8
-    $$
-
+    \\
+  $$
+    
   - 연산을 반복하여 나온 숫자들로 새로운 행렬을 만든다.
 
 - Filter를 통과한 결과는 입력데이터에 비해 축소된 것을 알 수 있다. 이 때 출력되는 행렬의 크기는 다음 식과 같다.
   $$
   out = {[{size(Input)-size(Filter)}] \over {stride}}+1
+  \\
   $$
   (ex) 5x5의 입력데이터와 3x3의 필터를 거치면 결과는 5-3+1 = 3이 되어 결과는 3x3행렬이 된다.
 
@@ -83,14 +91,13 @@ categories: Deep_Learning
 
   - 다음 4x4 크기의 행렬을 예시로 사용한다.
     $$
-    example : \begin{bmatrix}8&10&7&5\\16&12&20&19\\7&8&9&13\\10&15&15&14\end{bmatrix}
+    example : \begin{bmatrix}8&10&7&5\\16&12&20&19\\7&8&9&13\\10&15&15&14\end{bmatrix}\\
     $$
-
-  - 이 예시에서 2x2 Max pooling (Stride = 2)를 적용하면 다음과 같다.
+    이 예시에서 2x2 Max pooling (Stride = 2)를 적용하면 다음과 같다.
     $$
-    result : \begin{bmatrix}16&20\\15&15\end{bmatrix}
+    result : \begin{bmatrix}16&20\\15&15\end{bmatrix}\\
     $$
-
+    
   - Max pooling의 결과로 4x4 행렬이 2x2 행렬로 축소된 것을 확인할 수 있다.
 
 - Average pooling은 평균값을 반환해 준다.

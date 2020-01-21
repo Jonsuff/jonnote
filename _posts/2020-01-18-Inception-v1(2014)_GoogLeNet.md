@@ -45,7 +45,7 @@ GoogLeNet 구조에서 보이듯이 곳곳에 1x1 convolution 연산이 등장�
 
      필요한 연산횟수 : 
      $$
-     (14*14*48)*(5*5*480)\cong 112.9M
+     (14*14*48)*(5*5*480)\cong 112.9M\\
      $$
 
   2. 먼저 16개의 1x1x480의 filter로 convolution(zero padding = 2, stride =1)  한다. 결과적으로 16장의 14x14 feature map(14x14x16)이 생성된다. 5x5 filter로 convolution 하기 전에 feature map의 수가 확연하게 줄어든 것을 볼 수 있다.
@@ -54,7 +54,7 @@ GoogLeNet 구조에서 보이듯이 곳곳에 1x1 convolution 연산이 등장�
 
      필요한 연산횟수 : 
      $$
-     (14*14*16)*(1*1*480)+(14*14*48)*(5*5*16) \cong 5.3M
+     (14*14*16)*(1*1*480)+(14*14*48)*(5*5*16) \cong 5.3M\\
      $$
 
   결과를 보면 1번 상황에서는 112.9M번의 연산이, 2번상황에서는 5.3M번의 연산이 진행되었다. 즉 2번 방법으로 연산을 진행하면 연산횟수가 확연히 줄어들게 되고, 연산량이 줄어들면 Network의 depth를 더 늘릴 수 있게 된다.
@@ -87,7 +87,7 @@ Global average pooling은 이전 층에서 산출된 feature map들을 각각 �
 
 이 방식을 통해 얻을 수 있는 장점은 weight의 수를 줄일 수 있다는 점이다. FC방식과 Global average pooling방식의 weight 개수를 계산해보면 
 
-1. FC : $$7*7*1024*1024 \cong 51.3M$$
+1. FC : $$7*7*1024*1024 \cong 51.3M\\$$
 
    7x7x1024의 feature map을 1024개의 7x7x1024 filter convolution을 진행했기 때문에 convolution마다 1개의 weight가 발생한다.
 
