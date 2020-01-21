@@ -76,8 +76,9 @@ lang: en-GB # Set the site language
 title: "Alembic" # Site name or title, also used in jekyll-seo-tag
 logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
 description: "Alembic is a starting point for Jekyll projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately" # Site description and default description, also used in jekyll-seo-tag
-baseurl: "/alembic-theme"
-email: "goodgodgd@naver.com"
+baseurl: "/jonnote"
+repo: "https://github.com/Jonsuff/jonnote"
+email: "dbwhdtjq92@gmail.com"
 # disqus: "alembic-1" # Blog post comments, uncomment the option and set the site ID from your Disqus account
 # google_analytics: ''
 # google_analytics_anonymize_ip: ''
@@ -102,9 +103,9 @@ navigation_header:
 - title: Blog
   url: /blog/
 - title: Categories
-  url: /categories/
+  url: /categories
 - title: Search
-  url: /search/
+  url: /search
 
 navigation_footer:
 - title: Jonsuff's git
