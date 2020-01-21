@@ -107,8 +107,8 @@ navigation_header:
   url: /search/
 
 navigation_footer:
-- title: Created by David Darnes
-  url: https://darn.es
+- title: Jonsuff's git
+  url: https://github.com/Jonsuff
 
 remote_theme: daviddarnes/alembic
 

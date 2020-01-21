@@ -1,12 +1,14 @@
 ---
-title: About BlogTitle
+title: About Jonsuff
 feature_text: |
-  ## BlogTitle
-  Your blog description
+  ## Jonsuff
+  Try not to be lazy.
 feature_image: "https://picsum.photos/1300/400?image=989"
 ---
 
-Your blog introduction message~~  
 
-To edit this **Home**, edit `/index.md`  
+
+#### Jonsuff's study note
+
+> May contain incorrect informations!
 
