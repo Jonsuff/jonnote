@@ -80,13 +80,13 @@ CNN의 기본 연산인 합성곱은 **이산 합성곱**(discrete convolution) 
 
 - 이산 합성곱의 수학적 정의
   $$
-  \mathbf{y} = \mathbf{x} * \mathbf{w} \rarr \mathbf{y[\mathrm{i}]} = \sum^{+\infin}_{k = -\infin} \mathbf{x[\mathrm{i-k}]} \mathbf{w[\mathrm{k}]}
+  \mathbf{y} = \mathbf{x} * \mathbf{w} \rightarrow \mathbf{y[\mathrm{i}]} = \sum^{+\infty}_{k = -\infty} \mathbf{x[\mathrm{i-k}]} \mathbf{w[\mathrm{k}]}
   $$
   [] : 벡터 원소의 인덱스
 
   i = 출력 벡터 **y**의 각 원소에 대응
 
-  - 합연산에서 k의 범위가 $$+\infin$$ 에서 $$-\infin$$ 까지인것은 바르지 않다. 입력이 유한한 상황에서 k의 범위가 무한대로 뻗어나가면 출력또한 유효한 입력이 아닌 부분이 0으로 채워진 무한한 크기의 벡터가 되기 때문이다. 이를 해결하기 위해 **패딩**(padding) 작업을 해준다.
+  - 합연산에서 k의 범위가 $$+\infty$$ 에서 $$-\infty$$ 까지인것은 바르지 않다. 입력이 유한한 상황에서 k의 범위가 무한대로 뻗어나가면 출력또한 유효한 입력이 아닌 부분이 0으로 채워진 무한한 크기의 벡터가 되기 때문이다. 이를 해결하기 위해 **패딩**(padding) 작업을 해준다.
 
   
 
@@ -96,10 +96,9 @@ CNN의 기본 연산인 합성곱은 **이산 합성곱**(discrete convolution) 
 
   만약 원본 입력 **x**와 필터 **w**가 각각 n, m개의 원소를 가지고 m $$\le$$ n 이고, 패딩된 벡터 $$\mathbf{x}^p$$의 크기는 n+2p 이다. 따라서 이산 합성곱 공식은 다음과 같다.
   $$
-  \mathbf{y} = \mathbf{x} * \mathbf{w} \rarr \mathbf{y[\mathrm{i}]} = \sum^{k = m-1}_{k = 0} \mathbf{x^{\mathrm{p}}[\mathrm{i+m-k}]} \mathbf{w[\mathrm{k}]}
+  \mathbf{y} = \mathbf{x} * \mathbf{w} \rightarrow \mathbf{y[\mathrm{i}]} = \sum^{k = m-1}_{k = 0} \mathbf{x^{\mathrm{p}}[\mathrm{i+m-k}]} \mathbf{w[\mathrm{k}]}
   $$
   
-
 - 패딩의 종류
 
   실전에서 크게 사용되는 패딩은 다음과 같다.
