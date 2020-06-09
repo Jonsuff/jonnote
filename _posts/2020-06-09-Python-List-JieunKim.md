@@ -2,7 +2,7 @@
 layout: post
 title:  "파이썬- 변수와 list - by 김지은"
 date:   2020-06-09 10:20:13
-categories: Nalgaezit study
+categories: Nalgaezit-study
 ---
 
 
