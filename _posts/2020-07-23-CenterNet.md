@@ -73,13 +73,25 @@ categories: Deep_Learning
 - optimizer는 adam을 사용한다.
 
 - loss함수는 다음과 같다.
+
+  
   $$
+  \\
   L = L^{co}_{det} + L^{ce}_{det} + \alpha L^{co}_{pull} + \beta L^{co}_{push} + \gamma(L^{co}_{off} + L^{ce}_{off})
+  \\
   $$
-  $$L^{co}_{det}$$와 $$L^{ce}_{det}$$는 코너와 중앙 keypoint를 학습시키는데 사용되는 focal loss이다(잘 예측한 class에 대해서 가중치를 적게두어 변화를 적게하고, 잘못 예측하면 가중치를 높게두어 변화를 크게한다).
+  $$L^{co}_{det}$$와 $$L^{ce}_{det}$$는 코너와 중앙 keypoint를 학습시키는데 사용되는 focal loss이다
+
+  (잘 예측한 class에 대해서 가중치를 적게두어 변화를 적게하고, 잘못 예측하면 가중치를 높게두어 변화를 크게한다).
+
+  
 
   $$L^{co}_{push}$$는 코너의 push loss로, 각기 다른 물체의 코너끼리의 거리를 최대가 되게하여 학습시킨다.
 
+  
+
   $$L^{co}_{off}$$와 $$L^{ce}_{off}$$는 fast r-cnn에서 사용한 $$l_1 loss$$를 사용한다.
+
+  
 
   $$\alpha, \beta, \gamma$$는 각각 $$L_{det}, L_{pull}, L_{push}$$에 대한 가중치이며 [0.1, 0.1, 1]로 설정한다.
