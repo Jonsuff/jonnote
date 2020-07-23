@@ -25,6 +25,24 @@ categories: Deep_Learning
 
 
 
+# 2. 네트워크 구조
+
+### Hourglass Network
+
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/hourglass_net.png)
+
+- CornerNet에 사용된 네트워크 형식으로, 이미지의 여러 scale에 대한 정보를 downsampling 과정에서 추출하고, 이를 upsampling 과정에 반영하여 다양한 scale에서의 feature를 얻어낼 수 있다.
+
+
+
+### CenterNet
+
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/model_structure.png)
+
+- 기본적으로 CornerNet의 네트워크를 유지하고, 코너를 찾아내는 작업 이외에 center region에 대한 정보를 찾아내는 작업을 추가하여 기존의 pair 데이터를 이용하는것과 달리 (TL, BR, C)의 triplet 데이터를 이용한다.
+
+  
+
 ### 물체 인식 방법
 
 - CenterNet의 기초가 되는 CornerNet.
@@ -95,3 +113,29 @@ categories: Deep_Learning
   
 
   $$\alpha, \beta, \gamma$$는 각각 $$L_{det}, L_{pull}, L_{push}$$에 대한 가중치이며 [0.1, 0.1, 1]로 설정한다.
+
+
+
+
+
+## 3. 결과 및 성능
+
+### One-stage Detector중 우수한 성적
+
+
+
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/result_cocoAP.png)
+
+- coco AP 성능지표를 보면 YOLOv3보다 속도와 정확도면에서 앞선다
+
+
+
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/different_network.png)
+
+- feature를 추출할때 Hourglass-104에서 높은 성능을 보였고, ResNet-18을 사용할때 FPS가 142로 높게 나왔다
+
+
+
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/different_model.png)
+
+- 다른 논문에 사용된 네트워크와의 비교표
