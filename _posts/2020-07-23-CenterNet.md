@@ -49,11 +49,19 @@ categories: Deep_Learning
 
   기본적인 모델 구조는 CornerNet: Detecting Objects as Paired Keypoints 논문에서 소개한 CornerNet과 거의 유사하다.
 
-  CornerNet은 물체를 인식할 때 기존의 One-stage Detector들이 사용한 다수의 anchor box를 이용하는 방식이 아닌 물체의 좌측 상단 좌표와 우측 하단 좌표를 Keypoint Estimation을 이용하여 히트맵을 얻어내고, 그를 통해 물체를 인식한다.
+  CornerNet은 물체를 인식할 때 기존의 One-stage Detector들이 사용한 다수의 anchor box를 이용하는 방식이 아닌 물체의 좌측 상단과 우측 하단 좌표를 한 쌍의 keypoint로 이용하는 방식(corner pooling)을 채택했다.
+
+  
+
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/cornerpool.png)
+
+  물체의 코너는 이미지의 가로, 세로 끝부분과 물체와 배경의 경계(픽셀값 차이가 많은곳)의 거리값이 가장 큰 부분을 찾아낸다.
+
+  
 
   ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/cornerdetect.png)
 
-  --이미지--
+  
 
   위의 이미지처럼 물체의 좌측상단(TL(x,y)), 우측하단(BR(x,y))의 정보를 가지고 물체를 인식하는데, 이 알고리즘은 물체의 외곽선 인식에 민감하다.
 
@@ -69,7 +77,7 @@ categories: Deep_Learning
 
   ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/centernet/cacadecorner.png)
 
-  이를 보안하기 위해 cascade corner pooling을 사용한다. cascading corner pooling이란, CornerNet의 corner pooling 기법에서 코너를 찾고나면, 그 코너의 양 끝에서 중앙부분을 향하는 벡터정보를 얻어냄으로써 물체의 중앙부분의 특징까지 얻어내는 방법이다.
+  corner만으로 물체를 인식하는것은 물체의 바깥부분에 대한 정보만을 갖기때문에 이를 보안하기 위해 cascade corner pooling 기법을 사용한다. 이는 물체의 바깥 테두리를 코너로 찾고난 후 물체의 내부, 즉 코너를 찾을때 사용된 픽셀에서 물체 안쪽으로 비슷한 픽셀끼리의 최대값을 구하여 코너로 만들어진 테두리 내부의 feature까지도 이용할 수 있다.
 
 - 수식 정보
 
