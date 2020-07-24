@@ -21,7 +21,9 @@ categories: Deep_Learning
 
 - CenterNet은 One-stage Detector 이다.
 
-  Object Detector를 구현하기 위해서는 물체를 구별하는 Classification과 물체의 위치를 인식하는 Localization을 수행해야 한다. 만약 이 두 기능을 동시에 진행한다면 One-stage Detector라고 부르고(YOLO, CornerNet, CenterNet, ...), 순차적으로 Classification과 Locallization을 나누어 진행한다면 Two-stage Detector라고 부른다(R-CNN, fast R-CNN ...)
+  One-stage Detector는 이미지의 전체에서 feature map을 구하는 방식으로, convolution 연산이 적어 속도가 빠르다는 장점이 있다. 
+  
+  One-stage Detector 이외에 Two-stage Detector도 존재하는데, 이는 이미지 전체에서 feature map을 얻는것이 아닌 물체가 될 수 있는 부분(region proposal)을 추출하고, 그 부분에서 feature map을 구하는 방식이다. One-stage Detector보다 연산량이 훨씬 많기때문에 속도는 느리지만 정확도가 더 높다는 장점이 있다.
 
 
 
