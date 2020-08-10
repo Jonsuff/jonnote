@@ -35,21 +35,13 @@ categories: Deep_Learning
   >
   > Confusion matrix
   >
-  > TP(True Positive) : 맞는 물체를 맞았다고 한 경우 (실제 True : the higher, the better)
+  > TP(True Positive) : 맞는 물체를 맞았다고 한 경우 / 실제 True, 모델 True (ex) class label 일치 & high iou
   >
-  > ​								 실제 True, 모델 True (ex) class label 일치 & high iou
+  > TN(True Negative) : 맞는 물체를 틀렸다고 한 경우 / 실제 True, 모델 False (ex) class label 일치 & low iou
   >
-  > TN(True Negative) : 맞는 물체를 틀렸다고 한 경우 
+  > FP(False Positive) : 틀린 물체를 맞았다고 한 경우 / 실제 False, 모델 True (ex) class label 불일치 & high iou
   >
-  > ​								 실제 True, 모델 False (ex) class label 일치 & low iou
-  >
-  > FP(False Positive) : 틀린 물체를 맞았다고 한 경우 
-  >
-  > ​								 실제 False, 모델 True (ex) class label 불일치 & high iou
-  >
-  > FN(False Negative) : 틀린 물체를 틀렸다고 한 경우 (실제 True : the higher, the better)
-  >
-  > ​								 실제 False, 모델 False(ex) class label 불일치 & low iou
+  > FN(False Negative) : 틀린 물체를 틀렸다고 한 경우 / 실제 False, 모델 False(ex) class label 불일치 & low iou
   >
   > Precision(정밀도) = TP / (TP + FP) : 모델이 True로 분류한 것 중 실제 True인 것
   >
