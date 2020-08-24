@@ -43,7 +43,7 @@ categories: VODE
 
 2. Unlabeled video sequence의 캡쳐 이미지를 입력으로 사용하고, Single-view depth CNN과 camera pose estimation CNN을 이용하여 학습한다.
 
-   ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\1.png)
+   ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/1.png)
 
    위 그림과 같이 target이 되는 I_t와 1프레임 전, 후의 I_t-1, I_t+1을 통해 학습이 진행된다.
 
@@ -68,7 +68,7 @@ categories: VODE
 
     최종적으로 예측 target과 실제 target 사이의 photometric error를 loss로 사용하여 학습을 진행한다.
 
-    ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\2.png)
+    ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/2.png)
 
   
 
@@ -76,7 +76,7 @@ categories: VODE
 
   그렇다면 target 이미지 픽셀(p_t)에 해당하는 source 이미지 픽셀(p_s)는 어떻게 계산할까? 다음 계산식을 보자.
 
-  ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\3.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/3.png)
 
   논문에서 K는 camera intrinsics라고 언급하고 있다. 이를 이해하기 위해서는 [카메라 캘리브레이션](https://darkpgmr.tistory.com/32)에 대한 내용을 알아야 한다. 쉽고 빠르게 정리해 보면, 카메라를 통해 보여지는 이미지는 실제로는 x,y,z를 가지는 3차원 세상이지만 이미지로 표현된 것은 2차원이다. 즉 카메라는 3차원 공간상의 점들을 2차원 평면에 투사함으로써 이미지를 얻어내는데, 이때의 projection을 K로 사용했다.
 
@@ -117,7 +117,7 @@ categories: VODE
 
   이때 선형보간법(linearly interpolation : 끝 점들이 주어졌을 때 사이의 값을 직선 거리에 따라 선형적으로 계산하는 방법)을 사용하여 다음 그림의 가운데 점과 같이 네 좌표를 얻어낸다.
 
-  ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\5.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/5.png)
 
   이제 가운데 그림에서 구해진 네 가지 점을 이용하여 p_t를 구해야 한다. 이때는 다음과 같은 공식을 사용한다.
   $$
@@ -133,7 +133,7 @@ categories: VODE
 
 - 기본적인 depth와 pose network의 구조는 다음과 같다.
 
-  ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\4.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/4.png)
 
   - depth network : 
 
@@ -200,7 +200,7 @@ categories: VODE
 
 - Cityscapes dataset으로만 학습한 결과 : 
 
-  ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\6.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/6.png)
 
   
 
@@ -208,7 +208,7 @@ categories: VODE
 
 - Cityscapes dataset으로 훈련한 모델을 바로 Kitti dataset에 적용한 결과와 Kitti dataset으로도 학습하여 적용한 결과 : 
 
-  ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\7.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/7.png)
 
 
 
@@ -216,7 +216,7 @@ categories: VODE
 
 - 다른 논문의 연구 결과와 비교한 결과 : 
 
-  ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\8.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/8.png)
 
 
 
@@ -224,4 +224,4 @@ categories: VODE
 
 - Kitti + Cityscapes로 학습한 결과를 바로 Make3D dataset에 테스트한 결과 : 
 
-  ![](C:\Users\RILAB_JONSUFF\Desktop\Jonsuff\jonnote\images\sfmlearner\9.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/images/sfmlearner/9.png)
