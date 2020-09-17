@@ -14,18 +14,23 @@ categories: VODE
 | 저자 | Tinghui Zhou(UC Berkeley), Matthew Brown(Google), Noah Snavely(Google), David G. Lowe(Google) |
 | 출판 |                          CVPR, 2017                          |
 
-- SfM(Structure-from-Motion) :  움직이는 연속적인 이미지(ex 비디오)를 이용하여 3D형태의 구조물(혹은 이미지)를 복원해 내는 것.
+- SfM(Structure-from-Motion) :  움직이는 연속적인 이미지(ex 비디오)를 이용하여 3D형태의 구조물(혹은 이미지)을 복원해 내는 것.
 - Visual Odometry : 로봇의 현재 위치와 로봇이 바라보는 방향을 카메라와 같은 시각적 이미지를 통해 측정하는 것.
 - Depth Estimation : 2D형태의 이미지 안에서 깊이(Depth)를 추정하는 것.
 - Visual Odometry + Depth Estimation = VODE ( = DL-VODE : Deep Learning based -)
+- github : https://github.com/tinghuiz/SfMLearner
 
 
 
 ### 연구 목적 및 연구 내용 요약
 
-- 인간은 인생을 살면서 자연적으로 시각정보를 3차원으로 이해하며 그것을 토대로 반응하거나 행동한다. 이는 인간이 오랜 기간 연속적인 시각정보를 통해 세상의 일반성을 학습하는 과정을 겪으며 성장하기 때문에 가능한 것으로 추정된다.
+- 인간은 인생을 살면서 자연적으로 시각정보를 3차원으로 이해하며 그것을 토대로 반응하거나 행동한다.
 
-  한 가지 예로 인간은 두 눈으로 서로 다른 시점을 통해 사물을 바라보면서 입체감을 느낄 수 있다. 하지만 한 쪽 눈을 감더라도 완벽하진 않지만 대략적인 입체감을 예상하여 느낄 수 있다(실제로 정교한 작업을 하기에는 힘들다고 한다). 이는 인간이 인생을 살면서 두 눈으로 보며 학습한 입체적 정보를 통해 세상을 일반화 시켰기 때문에 한 눈으로도 예측이 가능한 것이다(세상의 일반화라 함은, 인간이 본능적으로 물체를 인식할 수 있는 것을 말한다. 예를 들어 평평한 곳은 땅, 푸른것은 하늘 등등..).
+   이는 인간이 오랜 기간 연속적인 시각정보를 통해 세상의 일반성을 학습하는 과정을 겪으며 성장하기 때문에 가능한 것으로 추정된다.
+
+  한 가지 예로 인간은 두 눈으로 서로 다른 시점을 통해 사물을 바라보면서 입체감을 느낄 수 있다. 하지만 한 쪽 눈을 감더라도 완벽하진 않지만 대략적인 입체감을 예상하여 느낄 수 있다(실제로 정교한 작업을 하기에는 힘들다고 한다). 
+
+  이는 인간이 인생을 살면서 두 눈으로 보며 학습한 입체적 정보를 통해 세상을 일반화 시켰기 때문에 한 눈으로도 예측이 가능한 것이다(세상의 일반화라 함은, 인간이 본능적으로 물체를 인식할 수 있는 것을 말한다. 예를 들어 평평한 곳은 땅, 푸른것은 하늘 등등..).
 
 - 인간이 느끼는 입체감에 정답이 없이 오직 경험으로 쌓인 데이터에 의존하여 학습한 것 처럼, 본 논문의 method는 현재 pose에 대한 gt값 없이 target image와 그와 연속된 sequential scene을 학습 데이터로 사용하여 카메라의 ego-Motion을 예측하는 방법이다.
 
@@ -141,7 +146,7 @@ categories: VODE
 
     위의 그림에서 화살표를 잘 보면 encoder와 decoder 사이에 skip connection이 있는 것을 볼 수 있다. 이는 convolution 연산이 많이 진행될수록 고수준 feature를 얻게 되어 feature의 고유 특성이 강조되고, 연산이 적게 진행될수록 저수준 feature를 얻어 공간적 정보가 강조되는 특성을 이용한 것이다. 즉 encoder부분의 low-level feature와 decoder의 high-level feature를 합쳐 더욱 다양한 정보를 이용하게 되고, 이를 통해 depth를 예측한다.
 
-    모든 conv layer들 뒤에는 ReLU activation이 붙는고(prediction 단계 제외), 예측값이 납득할만한 범위 안의 양수로 출력될 수 있도록 다음과 같은 파라미터를 사용한다.
+    모든 conv layer들 뒤에는 ReLU activation이 붙고(prediction 단계 제외), 예측값이 납득할만한 범위 안의 양수로 출력될 수 있도록 다음과 같은 파라미터를 사용한다.
     $$
     \\
     {1 \over (\alpha * sigmoid(x) + \beta)}
@@ -154,7 +159,7 @@ categories: VODE
 
     pose estimation network에 입력값은 모든 source 이미지와 target 이미지가 concatenate된 데이터 이고, 출력값은 target 이미지와 그에 해당하는 source 이미지 사이의 상대적 pose이다. 
 
-    네트워크 앞단에서 7개의 stride-2 conv를 거친 후 1x1 conv를 6*(N - 1) 채널로 연산을 한다(여기서 3개는 오일러 각도에 해당하고, 나머지는 3차원 변환에 해당한다).
+    네트워크 앞단에서 7개의 stride-2 conv를 거친 후 1x1 conv를 6*(N - 1) 채널로 연산을 한다(여기서 3개는 오일러 각도에 해당하고, 나머지는 3차원 변환에 해당한다). 6-DoF
 
     > 질문 : N에 대한 정보를 못찾았습니다...
 
