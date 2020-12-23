@@ -52,15 +52,12 @@ BRIEF는 위에서 언급했듯이 binary descriptor의 조사 패턴중 하나�
 
 BRIEF에서 패치 $p$ 내부의 두 픽셀을 비교하는 테스트 함수는 다음과 같다.
 
-
-$$
-\\
+$\\
 \tau(p; x, y) := \begin{cases}
 1 &\ \text{if }p(x) \lt p(y) \\
 0 &\ \text{otherwise}
 \end{cases}
-\\
-$$
+\\$
 
 
 
@@ -72,12 +69,9 @@ $$
 
 패치 내의 두 위치 $(x, y)$ 쌍을 겹치지 않도록 $n_d$개를 골라 다음과 같이 구성하여 $n_d$의 비트 길이를 갖는 BRIEF descriptor를 계산할 수 있다.
 
-
-$$
-\\
+$\\
 f_{n_d}(p) := \sum_{1 \leq i \leq n_d} 2^{i-1} \tau(p;x_i,y_i)
-\\
-$$
+\\$
 
 
 논문에서는 $n_d$의 크기를 128, 256, 512 세가지를 사용하여 좋은 결과가 도출되었다고 한다. 결과표에는 사용된 비트 수에 따라 $k = n_d / 8$로 계산하여 각 버전을 BRIEF-k로 표시했다.
@@ -162,9 +156,9 @@ corner detection은 다음과 같은 순서로 진행된다.
    scale factor t는 다음과 같이 계산할 수 있다.
    
    
-   $$
-   \\octave:t(c_i)=2^i \\ intra-octave:t(d_i)=2^i *1.5\\
-   $$
+   
+   $\\octave:t(c_i)=2^i \\ intra-octave:t(d_i)=2^i *1.5\\$
+   
    
    
 2. AGAST 알고리즘 중 하나인 FAST 9-16 알고리즘을 모든 octave / intra-octave 층에 적용하여 다양한 scale에서 corner를 찾아낸다.
@@ -183,13 +177,10 @@ corner detection은 다음과 같은 순서로 진행된다.
 
      corner라고 인식된 픽셀들을 아래 식과 같이 maximum condition을 진행하여 score *s*값을 얻어낸다.
      
-     
-     $$
-     \\FAST\mathbf{s} = max(\sum_{x \in brighter} |x-p|-t, \sum_{x \in darker}|p-x|-t)\\
-     $$
-
+     $\\FAST\mathbf{s} = max(\sum_{x \in brighter} |x-p|-t, \sum_{x \in darker}|p-x|-t)\\$
    
-
+   
+   
 3. ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/brisk.png)
 
    위와 같이 FAST score를 i+1, i, i-1의 연속된 세개 층에서 얻어냈을 때 가운데 i값이 위 아래층보다 크다면 이를 corner로 인식한다.
@@ -212,32 +203,26 @@ corner detection에서 scale에 대해 알고리즘을 진행했다면, descript
 
   이미지의 특정 keypoint k에 대해 pattern을 얻어내기 위해 $N *(N-1)/2$개의 샘플링 쌍중 하나 $(p_i, p_j)$가 있다고 하자. 각각의 샘플링된 점에서의 intensity가 $I(p_i, \sigma_i)$, $I(p_j, \sigma_j)$일때 이들은 local gradient $g(p_i, p_j)$를 구하기 위해 사용된다.
   
+  $\\g(\mathbf{p}_i, \mathbf{p}_j) = (\mathbf{p}_j - \mathbf{p}_i) \cdot {I(\mathbf{p}_j,\sigma_j) - I(\mathbf{p}_i, \sigma_i) \over \lVert \mathbf{p}_j - \mathbf{p}_i \rVert^2}\\$
   
-  $$
-  \\g(\mathbf{p}_i, \mathbf{p}_j) = (\mathbf{p}_j - \mathbf{p}_i) \cdot {I(\mathbf{p}_j,\sigma_j) - I(\mathbf{p}_i, \sigma_i) \over \lVert \mathbf{p}_j - \mathbf{p}_i \rVert^2}\\
-  $$
   
   
   모든 샘플링 쌍을 $\mathcal{A}$로 고려하면 아래와 같고,
   
+  $\\
+  \mathcal{A} = {(\mathbf{p}_i, \mathbf{p}_j) \in \mathbb{R}^2 \times \mathbb{R}^2 | i<N \and j<i \and i, j \in N}\\$
   
-  $$
-  \\
-  \mathcal{A} = {(\mathbf{p}_i, \mathbf{p}_j) \in \mathbb{R}^2 \times \mathbb{R}^2 | i<N \and j<i \and i, j \in N}\\
-  $$
-
+  
+  
   
   short-distance를 $\mathcal{S}$, long-distance를 $\mathcal{L}$이라고 구분하면 
+
+  $\\
+  \mathcal{S} = {(\mathbf{p}_i, \mathbf{p}_j) \in \mathcal{A} | \lVert \mathbf{p}_j - \mathbf{p}_i \rVert < \delta_{max}} \subseteq \mathcal{A} \\
+  \mathcal{L} = {(\mathbf{p}_i, \mathbf{p}_j) \in \mathcal{A} | \lVert \mathbf{p}_j - \mathbf{p}_i \rVert > \delta_{min}} \subseteq \mathcal{A}\\$
+
   
 
-  $$
-\\
-  \mathcal{S} = {(\mathbf{p}_i, \mathbf{p}_j) \in \mathcal{A} | \lVert \mathbf{p}_j - \mathbf{p}_i \rVert < \delta_{max}} \subseteq \mathcal{A} \\
-  \mathcal{L} = {(\mathbf{p}_i, \mathbf{p}_j) \in \mathcal{A} | \lVert \mathbf{p}_j - \mathbf{p}_i \rVert > \delta_{min}} \subseteq \mathcal{A}\\
-  $$
-  
-  
-  
   > $\delta_{max}$ : 9.75$t$
   >
   > $\delta_{min}$ : 13.67$t$
@@ -246,11 +231,8 @@ corner detection에서 scale에 대해 알고리즘을 진행했다면, descript
   
   $\mathcal{L}$을 이용하여 keypoint k의 전체적인 pattern orientation을 예측할 수 있다.
   
-  
-  $$
-  \\
-  \mathbf{g} = {g_x \choose g_y} = {1 \over L} \cdot \sum_{(\mathbf{p}_i, \mathbf{p}_j) \in \mathcal{L}} \mathbf{g}(\mathbf{p}_i, \mathbf{p}_j)\\
-  $$
+  $\\
+  \mathbf{g} = {g_x \choose g_y} = {1 \over L} \cdot \sum_{(\mathbf{p}_i, \mathbf{p}_j) \in \mathcal{L}} \mathbf{g}(\mathbf{p}_i, \mathbf{p}_j)\\$
 
 
 
@@ -260,14 +242,13 @@ BRISK는 $\alpha = arctan2(g_y, g_x)$만큼 회전된 샘플링 pattern에 적�
 
 비트 벡터 descriptor $d_k$는 $\mathcal{S}$에 속하는 모든 샘플 $\mathbf{p}_i ^\alpha, \mathbf{p}_j ^ \alpha \in \mathcal{S}$의 short-distance intensity comparison을 통해 계산할 수 있다.
 
-
-$$
-\\b = \begin{cases}
+$\\b = \begin{cases}
 1, & I(\mathbf{p}_j ^\alpha, \sigma_j) > I(\mathbf{p}_i ^\alpha, \sigma_i) \\
 0, & \mbox{otherwise}
-\end{cases}\\
-\forall (\mathbf{p}_i ^\alpha, \mathbf{p}_j ^\alpha) \in \mathcal{S}\\
-$$
+\end{cases}
+\qquad \forall (\mathbf{p}_i ^\alpha, \mathbf{p}_j ^\alpha) \in \mathcal{S}\\$
+
+
 
 
 위의 예시와 같이 N=60 points인 샘플링 pattern과 threshold를 가지면 길이 512의 bit-string을 갖게 되고, 두 개의 BRISK descriptor를 매칭하기 위해서는 Hamming distance 연산(XOR)을 사용하면 된다.
@@ -295,33 +276,27 @@ FAST는 BRISK에서도 사용된 실시간으로 keypoint를 찾아내는 알고
 
   이미지 패치의 moment m을 다음과 같이 정의하고,
   
+  $\\m_{pq} = \sum_{x, y} x^p y^q I(x,y)\\$
   
-  $$
-  \\m_{pq} = \sum_{x, y} x^p y^q I(x,y)\\
-  $$
+  
   
   
   이 moment들을 통해 centroid를 구하면 다음과 같다.
   
+  $\\C = 	\left( {m_{10} \over m_{00}}, {m_{01} \over m_{00}} \right)\\$
   
-  $$
-  \\C = 	\left( {m_{10} \over m_{00}}, {m_{01} \over m_{00}} \right)\\
-  $$
+  
+
+중심점 O에서 centroid C로 향하는 벡터 $\overline{OC}$를 만들 수 있고, 이 벡터의 방향에 근거하여 orientation을 다음과 같이 정리할 수 있다.
+
+$\\
+  \theta = atan2(m_{01}, m_{10})
+  \\$
 
   
-중심점 O에서 centroid C로 향하는 벡터 $\overline{OC}$를 만들 수 있고, 이 벡터의 방향에 근거하여 orientation을 다음과 같이 정리할 수 있다.
-  
-  
-  $$
-  \\
-  \theta = atan2(m_{01}, m_{10})
-  \\
-  $$
-  
-  
-  
+
   > atan2는 조건에 따라 4사분면에 대한 arctan값이다.
-  
+
   회전 변환의 invariance를 향상시키기 위해 x와 y의 영역을 원형의 형태로 유지하도록 하였고, 이때의 반지름 r은 $|C| \sim 0$이 되도록 하는 $[-r,r]$의 범위에서 결정되었다.
 
 
@@ -333,23 +308,19 @@ FAST는 BRISK에서도 사용된 실시간으로 keypoint를 찾아내는 알고
 - r-BRIEF : 
 
   n개의 binary test의 위치를 $(\mathbf{x}_i, \mathbf{y}_i)$라고 하면, 다음과 같이 $\mathbf{S}$행렬을 정의한다.
-  $$
-  \\
-  \mathbf{S} = {\mathbf{x}_1, ..., \mathbf{x}_n \choose \mathbf{y}_1, ..., \mathbf{y}_n}\\
-  $$
+  
+  $\\
+  \mathbf{S} = {\mathbf{x}_1, ..., \mathbf{x}_n \choose \mathbf{y}_1, ..., \mathbf{y}_n}\\$
   
   
-  앞에서 구한 patch orientation $\theta$에 해당되는 rotation matrix $\mathbf{R}_\theta$를 사용하여 $\mathbf{S}$의 "steered" 버전인 $\mathbf{S}_\theta$는 
   
+  앞에서 구한 patch orientation $\theta$에 해당되는 rotation matrix $\mathbf{R}_\theta$를 사용하여 $\mathbf{S}$의 "steered" 버전인 $\mathbf{S}_\theta$는 아래와 같다.
   
-$$
-  \mathbf{S}_\theta = \mathbf{R}_\theta \mathbf{S}
-  $$
-  
-  
-  위와 같이 정의한다. 
+  $\mathbf{S}_\theta = \mathbf{R}_\theta \mathbf{S}$
   
   이때 $\theta = 12^\circ$로 고정하여 항상 12도만큼 회전해 있다고 가정한 후 BRIEF 알고리즘을 적용한다.
+
+  
 
 
 
