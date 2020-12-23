@@ -78,7 +78,7 @@ categories: C++
 
   실행 결과 : 
 
-  ![](.\image\ex1.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/image/ex1.png)
 
   이 예제는 GroupB를 GroupA의 friend로 지정하여 GroupB의 모든 멤버를 GroupA에서 접근할 수 있다.
 
@@ -144,7 +144,7 @@ int main() {
 
 결과 : 
 
-![](.\image\ex2.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/image/ex2.png)
 
 여기서 만약 아래와 같이 직접적으로 private으로 선언된 변수에 접근하게 되면 에러가 발생한다.
 
@@ -168,7 +168,7 @@ C++언어의 이러한 특징은 연산자 오버로딩이나 함수가 어떤 �
 
 - 클래스와 클래스가 서로 친구라고 하더라도 친구의 친구인 클래스에 대해 접근은 허용되지 않는다.
 
-  ![](.\image\ex3.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/image/ex3.png)
 
 
 
@@ -236,7 +236,7 @@ int main() {
 
 결과 :
 
-![](.\image\ex4.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/image/ex4.png)
 
 
 
@@ -313,7 +313,7 @@ int main() {
 
 결과 : 
 
-![](.\image\ex5.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/image/ex5.png)
 
 
 
@@ -671,7 +671,7 @@ int main() {
 
 결과 :
 
-![](.\image\ex6.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/image/ex6.png)
 
 
 
@@ -738,7 +738,7 @@ int main() {
 
 결과 : 
 
-![](.\image\ex7.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/image/ex7.png)
 
 
 

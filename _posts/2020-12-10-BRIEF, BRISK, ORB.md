@@ -27,7 +27,7 @@ categories: Descriptor
 
 descriptor는 계산 방식에 따라 다양한 종류가 있는데, 그 중 **binary descriptor**는 특징점 주변에 있는 두개의 화소를 비교 쌍으로 삼아 그들의 명암값을 비교하여 0 또는 1의 이진값을 생성하여 사용한다. 이는 XOR 비트연산자로 서로를 비교할 수 있는 방식이기 때문에 낮은 CPU성능과 메모리 환경에서 빠르고 정확한 연산을 가능하게 한다.
 
-![](.\descriptor\binary_descriptor.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/binary_descriptor.png)
 
 이번에 소개할 **BRIEF, BRISK, ORB**는 binary descriptor의 대표적인 조사 패턴이다.
 
@@ -100,7 +100,7 @@ S x S 크기의 패치 내에서 $(x, y)$쌍을 어떻게 선택하느냐에 따
 
 5. $x_i= (0, 0)^T$이고 $y_i$는 극좌표계에서 가능한 모든 좌표
 
-![](.\descriptor\spatial_arrangement.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/spatial_arrangement.png)
 
 실험 결과 5번이 가장 성능이 좋지 않았고, 나머지들 중 2번이 근소하게 좋은 결과를 보여서 2번을 사용했다고 한다. 
 
@@ -110,11 +110,11 @@ S x S 크기의 패치 내에서 $(x, y)$쌍을 어떻게 선택하느냐에 따
 
 다음과 같은 6가지 이미지 특성에 대해 실험을 진행하였다.
 
-![](.\descriptor\test1.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/test1.png)
 
-![](.\descriptor\test2.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/test2.png)
 
-![](.\descriptor\result.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/result.png)
 
 - 한계 : BRIEF는 같은 크기의 가우시안에서 비교 쌍을 생성하기 때문에 스케일 변환과 회전 변환에 대처하지 못한다.
 
@@ -139,7 +139,7 @@ BRISK는 스케일이 변하거나 회전변환이 생기는 경우에도 keypoi
 
 corner detection은 다음과 같은 순서로 진행된다.
 
-![](.\descriptor\brisk_scale.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/brisk_scale.png)
 
 1. 원본 이미지 $c_0$을 절반 크기로 downsampling한 결과를 $c_1$으로 삼고, 그것을 $c_n$까지 반복한다.
 
@@ -156,7 +156,7 @@ corner detection은 다음과 같은 순서로 진행된다.
 
    FAST 9-16 알고리즘의 동작 원리는 아래의 그림을 통해 설명할 수 있다.
 
-   ![](.\descriptor\agast.png)
+   ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/agast.png)
 
    1) 중심점 p를 기준으로 반지름이 3인 원을 그린다.
 
@@ -171,7 +171,7 @@ corner detection은 다음과 같은 순서로 진행된다.
      \\FAST\mathbf{s} = max(\sum_{x \in brighter} |x-p|-t, \sum_{x \in darker}|p-x|-t)\\
      $$
 
-3. ![](.\descriptor\brisk.png)
+3. ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/brisk.png)
 
    위와 같이 FAST score를 i+1, i, i-1의 연속된 세개 층에서 얻어냈을 때 가운데 i값이 위 아래층보다 크다면 이를 corner로 인식한다.
 
@@ -189,7 +189,7 @@ corner detection에서 scale에 대해 알고리즘을 진행했다면, descript
 
   아래 그림과 같이 N=60인 pattern에서 파란 원이 샘플링 위치이고, 빨간 원은 pattern에서 한 point의 intensity를 샘플링할 때 각각의 원 안에 있는 점들 사이의 거리에 비례하여 가우시안 스무딩의 표준편차값을 반지름으로 한 원이다.
 
-  ![](.\descriptor\sampling.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/descriptor/sampling.png)
 
   이미지의 특정 keypoint k에 대해 pattern을 얻어내기 위해 $N *(N-1)/2$개의 샘플링 쌍중 하나 $(p_i, p_j)$가 있다고 하자. 각각의 샘플링된 점에서의 intensity가 $I(p_i, \sigma_i)$, $I(p_j, \sigma_j)$일때 이들은 local gradient $g(p_i, p_j)$를 구하기 위해 사용된다.
   $$
