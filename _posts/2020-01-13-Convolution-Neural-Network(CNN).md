@@ -23,7 +23,7 @@ categories: Deep_Learning
 
   (ex)
   $$
-  Input(A):\begin{bmatrix}2&4&6&1&7 \\ 2&6&0&7&0 \\ 5&0&0&8&9\\7&0&1&1&4\\6&7&2&0&1\end{bmatrix}\\
+  \\\\Input(A):\begin{bmatrix}2&4&6&1&7 \\ 2&6&0&7&0 \\ 5&0&0&8&9\\7&0&1&1&4\\6&7&2&0&1\end{bmatrix}\\
   \\
   $$
 
