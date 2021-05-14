@@ -1,3 +1,12 @@
+---
+layout: post
+title:  "Stereo R-CNN"
+date:   2021-01-12 19:23:00
+categories: Deep_Learning
+---
+
+
+
 # Stereo R-CNN
 
 | 제목 | Stereo R-CNN based 3D Object Detection for Autonomous Driving |
