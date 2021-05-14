@@ -48,7 +48,7 @@ categories: Deep_Learning
 
 stereo R-CNN의 네트워크 구성은 다음과 같다.
 
-![](./stereoRCNN/1.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/1.png)
 
 
 
@@ -60,11 +60,11 @@ RPN은 sliding window 기반의 foreground detector이다. feature가 추출되�
 
 RPN에 사용되는 GT는 left, right이미지의 2D박스들중 maximum좌표를 사용하여 두 box를 모두 포함하는 union GT를 만들어 사용한다. 이 union GT박스와 scale별로 고정된 크기의 anchor박스들을 IoU연산하여 0.7이상이면 positive label, 0.3 이하면 negative label을 갖게한다. 이후 left, right의 GT박스와 positive label의 feature를 비교하여 regression을 진행한다.
 
-![](./stereoRCNN/2.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/2.png)
 
 regression에 사용되는 인자는 다음과 같다.
 
-​																			$$[\Delta u, \Delta w, \Delta u', \Delta w', \Delta v, \Delta h]$$
+$$\\ [\Delta u, \Delta w, \Delta u', \Delta w', \Delta v, \Delta h] \\$$
 
 - u, v: 이미지 공간에서 박스의 가로, 세로에 해당하는 중앙좌표(left 이미지)
 - w, h: 박스의 가로, 세로크기(left 이미지)
@@ -88,13 +88,13 @@ stereo RPN단계의 출력인 left, right proposal 쌍에 RoI Align을 적용한
 
 - view-point angle: 다음 그림과 같은 관계의 $\theta, \beta$를 이용하여 $\alpha = \theta+\beta$로 정의하고, 그에 대해 regression을 진행한다. 이때 불연속성을 피하기 위해 target은 $[sin \alpha, cos\alpha]$로 사용한다.
 
-  ![](./stereoRCNN/3.png)
+  ![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/3.png)
 
 
 
 ### keypoint prediciton
 
-![](./stereoRCNN/4.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/4.png)
 
 3D박스의 밑면의 꼭짓점을 sementic keypoint라고 이름짓고, 이들 중 2D박스의 밑변의 선상에 위치한 것을 perspective keypoint라고 한다. 또한 3D박스 밑면의 u중 min, max값을 boundary keypoint로 지정하여 추후에 일반적인 크기의 객체만 걸러낼 수 있도록 Mask역할로 사용한다.
 
@@ -112,37 +112,37 @@ keypoint를 예측할때는 Mask-RCNN과 같은 방법을 사용하되, 오직 l
 
 3D박스는 다음과 같은 인자들로 표현할 수 있다.
 
-​																				$$\mathbb{x} = \{ x, y, z, \theta\}$$
+$$\\\mathbb{x} = \{ x, y, z, \theta\}\\$$
 
 3D box estimation에서는 2D박스와 perspective keypoint를 사용하여 reprojection error를 최소화하도록 학습한다. 사용하는 인자는 다음과 같다.
 
-​																		$$\mathbb{z} = \{u_l, v_t, u_r, v_b, u_l', u_r', u_p\}$$
+$$\\\mathbb{z} = \{u_l, v_t, u_r, v_b, u_l', u_r', u_p\}\\$$
 
 - l, t, r, b: 각각 left, top, right, bottom을 의미한다.
 - p: perspective keypoint의 좌표를 뜻한다.
 - z는 카메라 인트린직 K에 대해 normalize된 좌표이다.
 
-![](./stereoRCNN/5.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/5.png)
 
 위와 같은 상황에서, 다음과 같은 수식을 통해 각각의 좌표를 얻어낸다. 이때 w, h, l은 regression된 dimension이고 b는 stereo camera의 baseline 길이이다.
 
-![](./stereoRCNN/6.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/6.png)
 
 이 수식은 논문 *Stereo Vision-based Semantic 3D Object and Ego-motion Tracking for Autonomous Driving*의 아이디어를 참고했으며, 원문에서는 2D박스에서 3D박스를 예측할때 다음 식을 사용했다. 이 식에서 $\pi$는 p가 3D박스의 중앙점일때 $\pi(\mathbf{p})=[p_x / p_z, p_y/ p_z]$인 3D projection warp function이고, _u는 perspective keypoint의 좌표이다. d는 dimension prior라고 말하는데, 이는 3D박스의 x, y, z축방향의 크기를 말한다.
 
 > *Stereo Vision-based Semantic 3D Object and Ego-motion Tracking for Autonomous Driving* -> [본문 링크](https://openaccess.thecvf.com/content_ECCV_2018/papers/Peiliang_LI_Stereo_Vision-based_Semantic_ECCV_2018_paper.pdf)
 
-![](./stereoRCNN/12.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/12.png)
 
-![](./stereoRCNN/7.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/7.png)
 
 $C_1$~ $C_4$까지는 다음과 같은 행렬이다.
 
-![](./stereoRCNN/8.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/8.png)
 
 또한 view-point angle $\alpha$에 대해서 다음 식으로 예측한다.
 
-​																			$$\alpha = \theta + arctan(-{x \over z})$$
+$$\\\alpha = \theta + arctan(-{x \over z})\\$$
 
 
 ### Dense 3D box Alignment
@@ -153,13 +153,13 @@ $C_1$~ $C_4$까지는 다음과 같은 행렬이다.
 
 left 이미지에서 valid RoI영역의 normalize된 좌표 $(u_i, v_i)$에 위치한 픽셀값에 대한 photometric error는 다음과 같이 연산할 수 있다.
 
-​																$$\mathbf{e_i} = ||I_l(u_i, v_i) - I_r(u_i- {b \over z+\Delta z_i})||$$
+$$\\\mathbf{e_i} = ||I_l(u_i, v_i) - I_r(u_i- {b \over z+\Delta z_i})||\\$$
 
 - $\Delta z_i = z_i - z$로, 픽셀 i에서의 z와 3D박스 중앙의 z값의 차이이다.
 
 이때 e를 모두 더하여 total matching cost로 정하고, 이것이 최소가 되도록 학습하면 object의 depth를 예측할 수 있다.
 
-​																					$$\mathbf{E} = \sum^{N}_{i=0}\mathbf{e}_i$$
+$$\\\mathbf{E} = \sum^{N}_{i=0}\mathbf{e}_i\\$$
 
 
 ### Implementation Details
@@ -178,12 +178,12 @@ left 이미지에서 valid RoI영역의 normalize된 좌표 $(u_i, v_i)$에 위�
 
 #### 실험 결과
 
-![](./stereoRCNN/9.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/9.png)
 
 
 
-![](./stereoRCNN/10.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/10.png)
 
 
 
-![](./stereoRCNN/11.png)
+![](https://raw.githubusercontent.com/Jonsuff/jonnote/master/_posts/stereoRCNN/11.png)
