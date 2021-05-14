@@ -63,9 +63,8 @@ RPN에 사용되는 GT는 left, right이미지의 2D박스들중 maximum좌표�
 ![](./stereoRCNN/2.png)
 
 regression에 사용되는 인자는 다음과 같다.
-$$
-[\Delta u, \Delta w, \Delta u', \Delta w', \Delta v, \Delta h]
-$$
+
+​																			$$[\Delta u, \Delta w, \Delta u', \Delta w', \Delta v, \Delta h]$$
 
 - u, v: 이미지 공간에서 박스의 가로, 세로에 해당하는 중앙좌표(left 이미지)
 - w, h: 박스의 가로, 세로크기(left 이미지)
@@ -112,13 +111,12 @@ keypoint를 예측할때는 Mask-RCNN과 같은 방법을 사용하되, 오직 l
 ### 3D box estimation
 
 3D박스는 다음과 같은 인자들로 표현할 수 있다.
-$$
-\mathbb{x} = \{ x, y, z, \theta\}
-$$
+
+​																				$$\mathbb{x} = \{ x, y, z, \theta\}$$
+
 3D box estimation에서는 2D박스와 perspective keypoint를 사용하여 reprojection error를 최소화하도록 학습한다. 사용하는 인자는 다음과 같다.
-$$
-\mathbb{z} = \{u_l, v_t, u_r, v_b, u_l', u_r', u_p\}
-$$
+
+​																		$$\mathbb{z} = \{u_l, v_t, u_r, v_b, u_l', u_r', u_p\}$$
 
 - l, t, r, b: 각각 left, top, right, bottom을 의미한다.
 - p: perspective keypoint의 좌표를 뜻한다.
@@ -143,9 +141,8 @@ $C_1$~ $C_4$까지는 다음과 같은 행렬이다.
 ![](./stereoRCNN/8.png)
 
 또한 view-point angle $\alpha$에 대해서 다음 식으로 예측한다.
-$$
-\alpha = \theta + arctan(-{x \over z})
-$$
+
+​																			$$\alpha = \theta + arctan(-{x \over z})$$
 
 
 ### Dense 3D box Alignment
@@ -155,16 +152,14 @@ $$
 우선 valid RoI를 정하는데, 이는 boundary keypoint들 사이의 feature들중 아랫부분 절반으로 지정한다. 그 이유는 차량의 아랫쪽 절반이 3D박스에 더 타이트하게 맞기 때문이다. 
 
 left 이미지에서 valid RoI영역의 normalize된 좌표 $(u_i, v_i)$에 위치한 픽셀값에 대한 photometric error는 다음과 같이 연산할 수 있다.
-$$
-\mathbf{e_i} = ||I_l(u_i, v_i) - I_r(u_i- {b \over z+\Delta z_i})||
-$$
+
+​																$$\mathbf{e_i} = ||I_l(u_i, v_i) - I_r(u_i- {b \over z+\Delta z_i})||$$
 
 - $\Delta z_i = z_i - z$로, 픽셀 i에서의 z와 3D박스 중앙의 z값의 차이이다.
 
 이때 e를 모두 더하여 total matching cost로 정하고, 이것이 최소가 되도록 학습하면 object의 depth를 예측할 수 있다.
-$$
-\mathbf{E} = \sum^{N}_{i=0}\mathbf{e}_i
-$$
+
+​																					$$\mathbf{E} = \sum^{N}_{i=0}\mathbf{e}_i$$
 
 
 ### Implementation Details
